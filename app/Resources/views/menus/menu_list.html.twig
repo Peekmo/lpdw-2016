@@ -2,6 +2,10 @@ Les menus
 
 <ul>
 {% for menu in menus %}
-    <li>{{ menu.name }}</li>
+    <li>
+      <a href="{{ path('menu_name', {'name': menu.name}) }}">
+        {{ menu.name }}
+      </a>
+    </li>
 {% endfor %}
 </ul>

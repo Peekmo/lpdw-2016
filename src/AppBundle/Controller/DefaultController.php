@@ -35,4 +35,22 @@ class DefaultController extends Controller
             'menus' => $menus
         ]);
     }
+
+    /**
+     * @Route("/menus/{name}", name="menu_name")
+     */
+    public function menuDetailsAction(Request $request, $name)
+    {
+        $menu = new Menu($name, 'cool', 'champignons');
+
+        return $this->render('menus/menu_details.html.twig', [
+          'menu' => $menu
+        ]);
+    }
+
+
+
+
+
+
 }
