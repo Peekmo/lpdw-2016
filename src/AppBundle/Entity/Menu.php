@@ -2,20 +2,39 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="menu")
+ */
 class Menu
 {
     /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
      * @var string
+     *
+     * @ORM\Column(name="name", type="string")
      */
     private $name;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="ingredients", type="text")
      */
     private $ingredients;
 
@@ -98,4 +117,28 @@ class Menu
         return $this;
     }
 
+
+    /**
+     * Get the value of Id
+     *
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of Id
+     *
+     * @param mixed id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 }
