@@ -38,13 +38,6 @@ class Menu
      */
     private $ingredients;
 
-    public function __construct($name, $description, $ingredients)
-    {
-        $this->name = $name;
-        $this->description = $description;
-        $this->ingredients = $ingredients;
-    }
-
     /**
      * Get the value of Name
      *

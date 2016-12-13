@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Menu;
+use AppBundle\Form\MenuType;
 
 class DefaultController extends Controller
 {
@@ -67,6 +68,18 @@ class DefaultController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/newmenu", name="newmenu")
+     */
+    public function newMenuAction(Request $request)
+    {
+        $menu = new Menu();
+        $form = $this->createForm(MenuType::class, $menu);
+
+        return $this->render('menus/new.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
 
 
 
