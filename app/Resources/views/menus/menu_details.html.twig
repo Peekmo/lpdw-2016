@@ -1,2 +1,7 @@
+{% extends 'base.html.twig' %}
 
-{{ menu.name }}
+{% block title %}Menu {{ menu.name }}{% endblock %}
+
+{% block body %}
+  {{ menu.name }}
+{% endblock %}

@@ -1,11 +1,17 @@
-Les menus
+{% extends 'base.html.twig' %}
 
-<ul>
-{% for menu in menus %}
-    <li>
-      <a href="{{ path('menu_name', {'name': menu.name}) }}">
-        {{ menu.name }}
-      </a>
-    </li>
-{% endfor %}
-</ul>
+{% block title %}Les menus{% endblock %}
+
+{% block body %}
+  Les menus
+
+  <ul>
+  {% for menu in menus %}
+      <li>
+        <a href="{{ path('menu_name', {'name': menu.name}) }}">
+          {{ menu.name }}
+        </a>
+      </li>
+  {% endfor %}
+  </ul>
+{% endblock %}
