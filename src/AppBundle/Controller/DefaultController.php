@@ -53,7 +53,7 @@ class DefaultController extends Controller
             ->getRepository('AppBundle:Menu')
             // ->findOneByName($name)
             // ->findOneBy(array('name' => $name))
-            ->find($id)
+            ->getById($id)
             // ->findOneById($id)
             // ->findOneBy(['id' => $id])
         ;
