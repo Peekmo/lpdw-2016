@@ -76,6 +76,20 @@ class DefaultController extends Controller
         $menu = new Menu();
         $form = $this->createForm(MenuType::class, $menu);
 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $menu = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($menu);
+            $em->flush($menu);
+
+            return $this->redirectToRoute('menu_name', [
+                'id' => $menu->getId()
+            ]);
+        }
+
         return $this->render('menus/new.html.twig', [
             'form' => $form->createView()
         ]);
