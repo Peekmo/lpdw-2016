@@ -26,10 +26,17 @@ class DefaultController extends Controller
      */
     public function menuListAction(Request $request)
     {
-        $menus = [
-            new Menu('pizza', 'c\'est bon', 'de la pâte'),
-            new Menu('quiche', 'c\'est moins bons', 'de la pâte')
-        ];
+        // $menus = $this
+        //     ->getDoctrine()
+        //     ->getRepository('AppBundle:Menu')
+        //     ->findAll()
+        // ;
+
+        $menus = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Menu')
+            ->findBy([])
+        ;
 
         return $this->render('menus/menu_list.html.twig', [
             'menus' => $menus
@@ -37,11 +44,23 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/menus/{name}", name="menu_name")
+     * @Route("/menus/{id}", name="menu_name")
      */
-    public function menuDetailsAction(Request $request, $name)
+    public function menuDetailsAction(Request $request, $id)
     {
-        $menu = new Menu($name, 'cool', 'champignons');
+        $menu = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Menu')
+            // ->findOneByName($name)
+            // ->findOneBy(array('name' => $name))
+            ->find($id)
+            // ->findOneById($id)
+            // ->findOneBy(['id' => $id])
+        ;
+
+        if (is_null($menu)) {
+            throw $this->createNotFoundException('Pas trouvé !');
+        }
 
         return $this->render('menus/menu_details.html.twig', [
           'menu' => $menu
