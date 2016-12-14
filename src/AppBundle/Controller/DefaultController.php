@@ -7,7 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Menu;
+use AppBundle\Entity\MenuLike;
 use AppBundle\Form\MenuType;
+use AppBundle\Form\MenuLikeType;
 
 class DefaultController extends Controller
 {
@@ -16,6 +18,12 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $this->get('app.print_counter')->increase();
+        $this->get('app.print_counter')->increase();
+        $this->get('app.print_counter')->increase();
+
+        die(var_dump($this->get('app.print_counter')->getNumber()));
+
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
@@ -59,12 +67,32 @@ class DefaultController extends Controller
             // ->findOneBy(['id' => $id])
         ;
 
+        $menuLike = new MenuLike();
+        $form = $this->createForm(MenuLikeType::class, $menuLike, [
+          'id' => $id
+        ]);
+
         if (is_null($menu)) {
             throw $this->createNotFoundException('Pas trouvé !');
         }
 
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $menuLike = $form->getData();
+            $menuLike->setMenu($menu);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($menuLike);
+            $em->flush($menuLike);
+
+            return $this->redirectToRoute('menu_name', [
+                'id' => $menu->getId()
+            ]);
+        }
+
         return $this->render('menus/menu_details.html.twig', [
-          'menu' => $menu
+          'menu' => $menu,
+          'form' => $form->createView()
         ]);
     }
 
