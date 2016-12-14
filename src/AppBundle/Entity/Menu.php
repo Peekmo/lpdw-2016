@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Length;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MenuRepository")
@@ -21,13 +23,15 @@ class Menu
      * @var string
      *
      * @ORM\Column(name="name", type="string")
+     * @NotBlank(message="Le nom ne doit pas être vide")
+     * @Length(max="200")
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -35,6 +39,8 @@ class Menu
      * @var string
      *
      * @ORM\Column(name="ingredients", type="text")
+     * @NotBlank()
+     * @Length(min="50")
      */
     private $ingredients;
 
