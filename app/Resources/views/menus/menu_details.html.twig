@@ -7,16 +7,17 @@
 
 
     <div>
+
       {{ form_start(form) }}
       {{ form_widget(form) }}
       {{ form_end(form) }}
     </div>
 
     <div>
-      total : {{ total }}
+      total : {{ get_total_menu_like(menu.id) }}
     </div>
 
     <div>
-      moyenne : {{ average }}
+      moyenne : {{ get_average_menu_like(menu.id) }}
     </div>
 {% endblock %}

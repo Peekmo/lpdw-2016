@@ -30,7 +30,7 @@ class MenuLikeService
     }
 
     /**
-     * Retourne la miyenne des notes sur un menu
+     * Retourne la moyenne des notes sur un menu
      * @param  int $menuId Identifiant du menu
      * @return int
      */

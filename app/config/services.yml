@@ -11,3 +11,9 @@ services:
     app.menu_like_service:
         class: AppBundle\Services\MenuLikeService
         arguments: ['@doctrine']
+
+    app.menu_like_extension:
+        class: AppBundle\Twig\MenuLikeExtension
+        arguments: ['@app.menu_like_service']
+        tags:
+            - { name: twig.extension }

@@ -97,15 +97,7 @@ class DefaultController extends Controller
 
         return $this->render('menus/menu_details.html.twig', [
           'menu' => $menu,
-          'form' => $form->createView(),
-          'total' => $this
-              ->container
-              ->get('app.menu_like_service')
-              ->getTotalMenuLike($id),
-            'average' => $this
-                ->container
-                ->get('app.menu_like_service')
-                ->getAvgMenuLike($id)
+          'form' => $form->createView()
         ]);
     }
 
