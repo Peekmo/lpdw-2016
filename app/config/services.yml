@@ -7,3 +7,7 @@ services:
     app.print_counter:
         class: AppBundle\Services\PrintCounter
         arguments: ['@logger', 10]
+
+    app.menu_like_service:
+        class: AppBundle\Services\MenuLikeService
+        arguments: ['@doctrine']

@@ -18,6 +18,11 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+      $this
+          ->getDoctrine()
+          ->getRepository('AppBundle:Menu')
+          ->test()
+      ;
         $this->get('app.print_counter')->increase();
         $this->get('app.print_counter')->increase();
         $this->get('app.print_counter')->increase();
@@ -92,7 +97,15 @@ class DefaultController extends Controller
 
         return $this->render('menus/menu_details.html.twig', [
           'menu' => $menu,
-          'form' => $form->createView()
+          'form' => $form->createView(),
+          'total' => $this
+              ->container
+              ->get('app.menu_like_service')
+              ->getTotalMenuLike($id),
+            'average' => $this
+                ->container
+                ->get('app.menu_like_service')
+                ->getAvgMenuLike($id)
         ]);
     }
 
