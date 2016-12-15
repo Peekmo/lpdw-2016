@@ -18,17 +18,6 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-      $this
-          ->getDoctrine()
-          ->getRepository('AppBundle:Menu')
-          ->test()
-      ;
-        $this->get('app.print_counter')->increase();
-        $this->get('app.print_counter')->increase();
-        $this->get('app.print_counter')->increase();
-
-        die(var_dump($this->get('app.print_counter')->getNumber()));
-
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,

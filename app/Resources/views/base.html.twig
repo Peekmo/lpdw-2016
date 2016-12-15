@@ -7,7 +7,10 @@
     </head>
     <body style="background-color: red;">
         <div>
-          <a href="{{ path('newmenu') }}">Créer un menu</a>
+          {#% if is_granted('IS_AUTHENTICATED_REMEMBERED') %#}
+          {% if app.user %}
+            <a href="{{ path('newmenu') }}">Créer un menu</a>
+          {% endif %}
         </div>
         {% block body %}{% endblock %}
     </body>

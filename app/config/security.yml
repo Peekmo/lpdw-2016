@@ -27,8 +27,14 @@ security:
 
         acl:
             anonymous: ~
-            http_basic: ~
+            # http_basic: ~
             provider: bdd_provider
+            form_login:
+                login_path: menu_login # affiche le form
+                check_path: menu_check # vérification des
+                  # identifiants fournis
+                default_target_path: newmenu # Chemin de redirection
+                username_parameter: _email
 
         pattern:
             # Première méthode (exemple pattern)
@@ -36,6 +42,7 @@ security:
             anonymous: false
             http_basic: ~
             provider: in_memory
+
 
     access_control:
         - { path: /newmenu, roles: IS_AUTHENTICATED_REMEMBERED }
