@@ -11,8 +11,13 @@ security:
                         password: admin
                         roles: 'ROLE_ADMIN'
 
+        bdd_provider:
+            entity:
+                class: AppBundle:User
+                property: email
+
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        AppBundle\Entity\User: plaintext
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -23,12 +28,14 @@ security:
         acl:
             anonymous: ~
             http_basic: ~
+            provider: bdd_provider
 
         pattern:
             # Première méthode (exemple pattern)
             pattern: /newmenu
             anonymous: false
             http_basic: ~
+            provider: in_memory
 
     access_control:
-        - { path: /newmenu, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /newmenu, roles: IS_AUTHENTICATED_REMEMBERED }

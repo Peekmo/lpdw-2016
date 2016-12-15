@@ -6,6 +6,9 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body style="background-color: red;">
+        <div>
+          <a href="{{ path('newmenu') }}">Créer un menu</a>
+        </div>
         {% block body %}{% endblock %}
     </body>
 </html>
